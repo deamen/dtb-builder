@@ -1,0 +1,31 @@
+name: Build dtb base workflow
+
+on:
+  workflow_call:
+    inputs:
+      tgt:
+        required: true
+        type: string
+        
+jobs:
+  build-uboot-bin:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Install buildah
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y buildah qemu-user-static
+
+      - name: Build the dtbs
+        run: ${{ inputs.tgt }}/build_dtb_${{ inputs.tgt }}.sh
+
+        
+      - name: Upload the ${{ inputs.tgt }} dtb
+        uses: actions/upload-artifact@3cea5372237819ed00197afe530f5a7ea3e805c8 #v3.1.0
+        with:
+          name: dtb_${{ inputs.tgt }}
+          path: out/dtb_${{ inputs.tgt }}.dtb
+          retention-days: 1
