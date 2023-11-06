@@ -16,7 +16,7 @@ buildah copy $container orangepi_zero3/0001-orangepi-zero3-dts-linux-6.6.patch /
 buildah config --workingdir "/linux" $container
 buildah run $container git apply /tmp/0001-orangepi-zero3-dts-linux-6.6.patch
 buildah run $container make defconfig
-buildah run $container make -j$(nproc --ignore 1) dtbs
+buildah run $container make -j$(nproc --ignore 1) allwinner/sun50i-h618-orangepi-zero3.dtb
 
 copy_script="copy_artifacts.sh"
 cat << 'EOF' >> $copy_script
