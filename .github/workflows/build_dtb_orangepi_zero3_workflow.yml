@@ -12,7 +12,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  build-dtb-nanopi-r4s:
+  build-dtb-orangepi_zero3:
     uses: ./.github/workflows/build_dtb_base_workflow.yml
     with:
       tgt: orangepi_zero3
