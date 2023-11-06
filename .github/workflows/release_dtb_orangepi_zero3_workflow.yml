@@ -19,7 +19,7 @@ jobs:
       - uses: actions/checkout@v3
 
       - name: Download dtb_orangepi_zero3 release file
-        uses: actions/download-artifact@fb598a63ae348fa914e94cd0ff38f362e927b741 #v3.0.0
+        uses: actions/download-artifact@9bc31d5ccc31df68ecc42ccf4149144866c47d8a #v3.0.2
         with:
           name: dtb_orangepi_zero3
 
@@ -36,7 +36,7 @@ jobs:
         
       - name: Verify Release
         run: |
-          release_id=$(gh release view "$tag_name" --json id -q ".[0].id")
+          release_id=$(gh release view "$tag_name" --json id -q ".id")
           echo "Release ID: $release_id"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
