@@ -1,0 +1,18 @@
+name: "Build dtb: nanopi-r4s"
+on:
+  push:
+    branches: [ "master" ]
+    paths: 
+       - 'nanopi-r4s/*'
+       - '.github/workflows/build_dtb_base_workflow.yml'
+       - '.github/workflows/build_dtb_nanopi-r4s_workflow.yml'
+  pull_request:
+    branches: [ "master" ]
+  
+  workflow_dispatch:
+
+jobs:
+  build-dtb-nanopi-r4s:
+    uses: ./.github/workflows/build_dtb_base_workflow.yml
+    with:
+      tgt: nanopi-r4s
