@@ -12,9 +12,11 @@ buildah run $container apk add git gcc make libc-dev bison flex openssl-dev pyth
 buildah run $container git clone https://github.com/torvalds/linux.git --depth 1 --branch $kernel_ver
 
 buildah copy $container orangepi_zero3/0001-orangepi-zero3-dts-linux-6.6.patch /tmp/
+buildah copy $container orangepi_zero3/0002-orangepi-zero3-dts-i2c3-linux-6.6.patch /tmp/
 
 buildah config --workingdir "/linux" $container
 buildah run $container git apply /tmp/0001-orangepi-zero3-dts-linux-6.6.patch
+buildah run $container git apply /tmp/0002-orangepi-zero3-dts-i2c3-linux-6.6.patch
 buildah run $container make -j$(nproc --ignore 1) defconfig
 buildah run $container make -j$(nproc --ignore 1) allwinner/sun50i-h618-orangepi-zero3.dtb
 

@@ -1,0 +1,33 @@
+diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h618-orangepi-zero3.dts b/arch/arm64/boot/dts/allwinner/sun50i-h618-orangepi-zero3.dts
+index b3b1b8692125..deb0c1b38b5d 100644
+--- a/arch/arm64/boot/dts/allwinner/sun50i-h618-orangepi-zero3.dts
++++ b/arch/arm64/boot/dts/allwinner/sun50i-h618-orangepi-zero3.dts
+@@ -10,6 +10,14 @@
+ / {
+ 	model = "OrangePi Zero3";
+ 	compatible = "xunlong,orangepi-zero3", "allwinner,sun50i-h618";
++
++	aliases {
++		i2c0 = &i2c0;
++		i2c1 = &i2c1;
++		i2c2 = &i2c2;
++		i2c3 = &i2c3;
++		i2c4 = &i2c4;
++	};
+ };
+ 
+ &emac0 {
+@@ -87,6 +95,13 @@ reg_dcdc3: dcdc3 {
+ 	};
+ };
+ 
++&i2c3 {
++        pinctrl-names = "default";
++        pinctrl-0 = <&i2c3_ph_pins>;
++        status = "okay";
++};
++
++
+ &pio {
+ 	vcc-pc-supply = <&reg_dldo1>;
+ 	vcc-pf-supply = <&reg_dldo1>;
