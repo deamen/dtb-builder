@@ -9,7 +9,7 @@ buildah config --label maintainer=""github.com/deamen"" $container
 buildah config --env kernel_ver=$kernel_ver $container
 
 buildah run $container apk add git gcc make libc-dev bison flex openssl-dev python3 dtc gcc-arm-none-eabi py3-setuptools swig python3-dev py3-elftools patch
-buildah run $container git clone https://github.com/torvalds/linux.git --depth 1 --branch $kernel_ver
+buildah run $container git -c advice.detachedHead=false clone https://github.com/torvalds/linux.git --depth 1 --branch $kernel_ver
 
 buildah copy $container orangepi_zero3/0001-orangepi-zero3-dts-linux-6.6.patch /tmp/
 buildah copy $container orangepi_zero3/0002-orangepi-zero3-dts-i2c3-linux-6.6.patch /tmp/
