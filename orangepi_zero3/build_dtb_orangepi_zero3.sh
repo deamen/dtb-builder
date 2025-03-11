@@ -2,7 +2,7 @@
 # Set kernel_ver environment variables
 export kernel_ver="v6.6"
 
-export container=$(buildah from arm64v8/alpine:3.18)
+export container=$(buildah from --arch ARM64 quay.io/deamen/alpine-base:latest)
 buildah config --label maintainer=""github.com/deamen"" $container
 
 # Set kernel_ver environment variables in container
